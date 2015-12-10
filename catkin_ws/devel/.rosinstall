@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/test/Linefollow/catkin_ws/devel/setup.sh
