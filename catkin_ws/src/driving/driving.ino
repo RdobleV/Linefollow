@@ -5,6 +5,8 @@ class NewHardware : public ArduinoHardware {
   public: NewHardware():ArduinoHardware(&Serial1 , 57600) {};
 }; ros::NodeHandle_<NewHardware> nh;
 
+
+std_msgs::String str_msg;
 //pin layout robot
 
 //H-bridge
@@ -34,7 +36,7 @@ int dire = 0;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
   pinMode(rev1, OUTPUT);
   pinMode(rev2, OUTPUT);
@@ -51,11 +53,14 @@ void setup() {
   digitalWrite(en1, HIGH);
   digitalWrite(en2, HIGH);
 
- 
+   nh.initNode();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+   nh.spinOnce();
+   delay(1000);
+ /*
   if (Serial.available() > 0) {
     dire = Serial.read();
 
@@ -103,6 +108,8 @@ void loop() {
   else { //stop
     halt(1);
   }
+*/
+
 
   //forward
   //int blockade = sonar();
